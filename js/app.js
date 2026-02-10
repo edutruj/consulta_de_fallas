@@ -2,6 +2,7 @@ class ReportesApp {
     constructor() {
         this.servicios = [];
         this.resultadosActuales = [];
+        this.crud = null;
         this.init();
     }
 
@@ -10,6 +11,9 @@ class ReportesApp {
         this.initEventListeners();
         this.cargarTabla();
         this.actualizarEstadisticas();
+        
+        this.inicializarCRUD();
+        
         if ($('#servicioCategoria').length) {
             $('#servicioCategoria').select2({theme: 'classic', width: '100%'});
         }
@@ -17,7 +21,20 @@ class ReportesApp {
             $('#filtrarCategoria').select2({theme: 'classic', width: '100%'});
         }
     }
-
+    
+    inicializarCRUD() {
+        try {
+            if (typeof CRUDScripts !== 'undefined') {
+                this.crud = new CRUDScripts(this);
+                window.crud = this.crud;
+            } else {
+                setTimeout(() => this.inicializarCRUD(), 500);
+            }
+        } catch (error) {
+            console.error('Error al inicializar CRUD:', error);
+        }
+    }
+    
     async cargarServicios() {
         try {
             const saved = localStorage.getItem('serviciosData');
@@ -31,17 +48,17 @@ class ReportesApp {
             }
             document.getElementById('totalServicios').textContent = this.servicios.length;
         } catch (error) {
-            this.servicios = datosRespaldo;
+            this.servicios = datosRespaldo || [];
             document.getElementById('totalServicios').textContent = this.servicios.length;
         }
     }
-
+    
     guardarServicios() {
         localStorage.setItem('serviciosData', JSON.stringify(this.servicios));
         localStorage.setItem('ultimaActualizacion', new Date().toLocaleString());
         this.actualizarEstadisticas();
     }
-
+    
     actualizarEstadisticas() {
         const fecha = localStorage.getItem('ultimaActualizacion') || 'Hoy';
         document.getElementById('ultimaActualizacion').textContent = fecha;
@@ -64,7 +81,7 @@ class ReportesApp {
         if (contadorNormalidad) contadorNormalidad.textContent = normalidad;
         if (contadorIntermitencias) contadorIntermitencias.textContent = intermitencias;
     }
-
+    
     initEventListeners() {
         const buscarInput = document.getElementById('buscarServicio');
         if (buscarInput) {
@@ -109,16 +126,8 @@ class ReportesApp {
                 }
             }
         });
-
-        const importBackupInput = document.getElementById('importBackupInput');
-        if (importBackupInput) {
-            importBackupInput.addEventListener('change', (e) => {
-                this.importarBackupFile(e.target.files[0]);
-                e.target.value = '';
-            });
-        }
     }
-
+    
     buscarServicios() {
         const busqueda = document.getElementById('buscarServicio').value.trim();
         const resultadosSection = document.getElementById('resultadosSection');
@@ -169,7 +178,7 @@ class ReportesApp {
             }
         }, 300);
     }
-
+    
     mostrarResultados(servicios, busqueda = '') {
         const container = document.getElementById('resultadosContainer');
         const contador = document.getElementById('contadorResultados');
@@ -182,7 +191,7 @@ class ReportesApp {
             if (container) container.appendChild(card);
         });
     }
-
+    
     crearTarjetaResultado(servicio, index, busqueda) {
         const div = document.createElement('div');
         div.className = 'result-card fade-in';
@@ -248,7 +257,7 @@ class ReportesApp {
         
         return div;
     }
-
+    
     cargarTabla(filtro = '') {
         const tbody = document.getElementById('tablaServicios');
         const contador = document.getElementById('contadorTabla');
@@ -281,7 +290,7 @@ class ReportesApp {
             tbody.appendChild(fila);
         });
     }
-
+    
     crearFilaTabla(servicio) {
         const tr = document.createElement('tr');
         tr.className = 'table-row';
@@ -321,26 +330,26 @@ class ReportesApp {
         
         return tr;
     }
-
+    
     escapeHtml(text) {
         if (!text) return '';
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML.replace(/'/g, "\\'");
     }
-
+    
     resaltarTexto(texto, busqueda) {
         if (!busqueda || !texto) return texto;
         const regex = new RegExp(`(${busqueda.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
         return texto.toString().replace(regex, '<mark>$1</mark>');
     }
-
+    
     crearResumen(texto, maxLength = 100) {
         if (!texto || texto.trim() === '') return '<span class="text-muted">N/A</span>';
         if (texto.length <= maxLength) return texto;
         return texto.substring(0, maxLength) + '...';
     }
-
+    
     obtenerTextoCategoria(categoria) {
         const categorias = {
             'telecomunicaciones': 'Telecomunicaciones',
@@ -351,7 +360,7 @@ class ReportesApp {
         };
         return categorias[categoria] || 'General';
     }
-
+    
     buscarServicioDesdeTabla(nombreServicio) {
         const buscarInput = document.getElementById('buscarServicio');
         if (buscarInput) {
@@ -359,7 +368,7 @@ class ReportesApp {
             this.buscarServicios();
         }
     }
-
+    
     mostrarTodos() {
         const buscarInput = document.getElementById('buscarServicio');
         if (buscarInput) buscarInput.value = '';
@@ -375,7 +384,7 @@ class ReportesApp {
         
         this.mostrarNotificacion(`Mostrando todos los ${this.servicios.length} servicios`, 'info');
     }
-
+    
     limpiarBusqueda() {
         const buscarInput = document.getElementById('buscarServicio');
         if (buscarInput) buscarInput.value = '';
@@ -390,21 +399,21 @@ class ReportesApp {
         
         if (buscarInput) buscarInput.focus();
     }
-
+    
     copiarTexto(texto) {
         if (!texto) return;
         navigator.clipboard.writeText(texto).then(() => {
             this.mostrarNotificacion('Texto copiado al portapapeles', 'success');
         });
     }
-
+    
     copiarServicio(nombreServicio) {
         if (!nombreServicio) return;
         navigator.clipboard.writeText(nombreServicio).then(() => {
             this.mostrarNotificacion('Servicio copiado al portapapeles', 'success');
         });
     }
-
+    
     copiarResultados() {
         if (this.resultadosActuales.length === 0) {
             this.mostrarNotificacion('No hay resultados para copiar', 'warning');
@@ -423,7 +432,7 @@ class ReportesApp {
             this.mostrarNotificacion('Resultados copiados al portapapeles', 'success');
         });
     }
-
+    
     exportarResultados() {
         if (this.resultadosActuales.length === 0) {
             this.mostrarNotificacion('No hay resultados para exportar', 'warning');
@@ -447,7 +456,7 @@ class ReportesApp {
         
         this.mostrarNotificacion('Resultados exportados como CSV', 'success');
     }
-
+    
     mostrarNotificacion(mensaje, tipo = 'success') {
         const tipos = {
             success: { icon: 'check-circle', color: '#10b981' },
@@ -504,11 +513,11 @@ class ReportesApp {
             document.head.appendChild(style);
         }
     }
-
+    
     scrollToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
+    
     mostrarDetallesCompletos(nombreServicio) {
         const servicio = this.servicios.find(s => s.servicio === nombreServicio);
         if (!servicio) return;
@@ -557,39 +566,15 @@ ${servicio.intermitencia || 'No especificado'}
 
         modal.classList.remove('hidden');
     }
-
+    
     cerrarModal() {
         const modal = document.getElementById('detallesModal');
         if (modal) modal.classList.add('hidden');
     }
-
-    importarBackupFile(file) {
-        if (!file) return;
-
-        try {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const data = JSON.parse(e.target.result);
-                
-                if (!data.servicios || !Array.isArray(data.servicios)) {
-                    throw new Error('Formato de archivo inválido');
-                }
-                
-                if (confirm(`¿Importar ${data.servicios.length} scripts? Esto reemplazará los datos actuales.`)) {
-                    this.servicios = data.servicios;
-                    this.guardarServicios();
-                    this.cargarTabla();
-                    this.mostrarNotificacion(`${data.servicios.length} scripts importados correctamente`, 'success');
-                }
-            };
-            reader.readAsText(file);
-        } catch (error) {
-            this.mostrarNotificacion('Error al importar el backup', 'error');
-        }
-    }
 }
 
 const app = new ReportesApp();
+window.app = app;
 
 function toggleAdminPanel() {
     const panel = document.getElementById('adminPanel');
@@ -598,6 +583,20 @@ function toggleAdminPanel() {
 
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function mostrarFormularioNuevo() {
+    if (window.crud) {
+        window.crud.mostrarFormularioNuevo();
+    } else {
+        setTimeout(() => {
+            if (window.crud) {
+                window.crud.mostrarFormularioNuevo();
+            } else {
+                alert('Error: El sistema no está listo. Recarga la página.');
+            }
+        }, 500);
+    }
 }
 
 const additionalStyles = `
