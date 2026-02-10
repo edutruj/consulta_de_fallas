@@ -3,15 +3,11 @@ class CRUDScripts {
         this.app = app;
         this.init();
     }
-
+    
     init() {
         this.cargarScriptsLista();
-        const form = document.getElementById('scriptForm');
-        if (form) {
-            form.addEventListener('submit', (e) => this.guardarScript(e));
-        }
     }
-
+    
     mostrarFormularioNuevo() {
         const form = document.getElementById('formScript');
         const lista = document.getElementById('listaScripts');
@@ -34,7 +30,7 @@ class CRUDScripts {
         const servicioNombre = document.getElementById('servicioNombre');
         if (servicioNombre) servicioNombre.focus();
     }
-
+    
     editarScript(servicio) {
         const form = document.getElementById('formScript');
         const lista = document.getElementById('listaScripts');
@@ -61,7 +57,7 @@ class CRUDScripts {
             $('#servicioCategoria').val(servicio.categoria || 'general').trigger('change');
         }
     }
-
+    
     async guardarScript(event) {
         event.preventDefault();
         
@@ -95,6 +91,7 @@ class CRUDScripts {
         }
         
         const indiceExistente = this.app.servicios.findIndex(s => s.servicio === nombre);
+        
         if (indiceExistente >= 0 && nombre !== id) {
             this.app.servicios[indiceExistente] = nuevoServicio;
         } else {
@@ -110,12 +107,10 @@ class CRUDScripts {
         this.app.cargarTabla();
         this.cancelarEdicion();
         
-        this.app.mostrarNotificacion(
-            id ? 'Script actualizado correctamente' : 'Script creado correctamente',
-            'success'
-        );
+        const mensaje = id ? 'Script actualizado correctamente' : 'Script creado correctamente';
+        this.app.mostrarNotificacion(mensaje, 'success');
     }
-
+    
     cancelarEdicion() {
         const form = document.getElementById('formScript');
         const lista = document.getElementById('listaScripts');
@@ -126,7 +121,7 @@ class CRUDScripts {
         const scriptForm = document.getElementById('scriptForm');
         if (scriptForm) scriptForm.reset();
     }
-
+    
     eliminarScript(nombreServicio) {
         if (!confirm(`¿Estás seguro de eliminar el script "${nombreServicio}"?`)) {
             return;
@@ -139,7 +134,7 @@ class CRUDScripts {
         
         this.app.mostrarNotificacion('Script eliminado correctamente', 'success');
     }
-
+    
     cargarScriptsLista() {
         const container = document.getElementById('scriptsContainer');
         if (!container) return;
@@ -156,7 +151,7 @@ class CRUDScripts {
             container.appendChild(scriptItem);
         });
     }
-
+    
     crearScriptItem(servicio) {
         const div = document.createElement('div');
         div.className = 'script-item';
@@ -172,10 +167,10 @@ class CRUDScripts {
                     <span class="script-category">${categoriaTexto}</span>
                 </div>
                 <div class="script-actions">
-                    <button class="btn btn-copy" onclick="crud.editarScript(${JSON.stringify(servicio).replace(/"/g, '&quot;')})">
+                    <button class="btn btn-copy" onclick="window.crud.editarScript(${JSON.stringify(servicio).replace(/"/g, '&quot;')})">
                         <i class="fas fa-edit"></i>
                     </button>
-                    <button class="btn btn-danger" onclick="crud.eliminarScript('${this.app.escapeHtml(servicio.servicio)}')">
+                    <button class="btn btn-danger" onclick="window.crud.eliminarScript('${this.app.escapeHtml(servicio.servicio)}')">
                         <i class="fas fa-trash"></i>
                     </button>
                 </div>
@@ -192,13 +187,13 @@ class CRUDScripts {
         
         return div;
     }
-
+    
     crearPreview(texto, maxLength = 150) {
         if (!texto) return '<span class="text-muted">Sin contenido</span>';
         if (texto.length <= maxLength) return texto;
         return texto.substring(0, maxLength) + '...';
     }
-
+    
     filtrarScripts() {
         const busqueda = document.getElementById('buscarScripts').value.toLowerCase();
         const items = document.querySelectorAll('.script-item');
@@ -215,34 +210,44 @@ class CRUDScripts {
             item.style.display = coincide ? '' : 'none';
         });
     }
+}
 
-    exportarBackup() {
-        const data = {
-            servicios: this.app.servicios,
-            exportado: new Date().toISOString(),
-            version: '2.0'
-        };
+function inicializarCRUD() {
+    if (typeof app !== 'undefined' && app.servicios) {
+        const crud = new CRUDScripts(app);
+        window.crud = crud;
         
-        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `backup-scripts-${new Date().toISOString().slice(0,10)}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        
-        this.app.mostrarNotificacion('Backup exportado correctamente', 'success');
-    }
-
-    importarBackup() {
-        const input = document.getElementById('importBackupInput');
-        if (input) input.click();
+        if (app.crud === null || app.crud === undefined) {
+            app.crud = crud;
+        }
+    } else {
+        setTimeout(inicializarCRUD, 100);
     }
 }
 
-setTimeout(() => {
-    const crud = new CRUDScripts(app);
-    window.crud = crud;
-}, 100);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', inicializarCRUD);
+} else {
+    inicializarCRUD();
+}
+
+window.guardarScript = function(event) {
+    if (window.crud) {
+        window.crud.guardarScript(event);
+    } else {
+        console.error('CRUD no disponible para guardar script');
+        event.preventDefault();
+    }
+};
+
+window.cancelarEdicion = function() {
+    if (window.crud) {
+        window.crud.cancelarEdicion();
+    }
+};
+
+window.filtrarScripts = function() {
+    if (window.crud) {
+        window.crud.filtrarScripts();
+    }
+};
