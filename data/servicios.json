@@ -1,0 +1,387 @@
+[
+  {
+    "servicio": "Nequi Push – Compras de Saldo",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que actualmente se presenta una novedad en la asignación de las compras de saldo realizadas por Nequi Push. Nuestro equipo se encuentra validando la situación con la entidad correspondiente para normalizar el servicio a la mayor brevedad posible.",
+    "normalidad": "Importante: Nos complace informarte que la novedad presentada en la asignación de las compras de saldo realizadas por Nequi Push ha sido solucionada y los saldos correspondientes ya fueron aplicados correctamente. Agradecemos tu paciencia y comprensión durante la atención de esta situación.",
+    "intermitencia": "Importante: Por medio del presente informamos que actualmente las compras de saldo realizadas por Nequi Push pueden presentar intermitencias en su asignación. Nos encontramos validando la novedad con la entidad correspondiente para solucionar la situación lo antes posible."
+  },
+  {
+    "servicio": "Recargas Internacionales – Venezuela",
+    "categoria": "telecomunicaciones",
+    "falla": "Importante: Por medio del presente informamos que actualmente se presenta una novedad en el procesamiento de las recargas dirigidas a Venezuela. Nuestro equipo se encuentra trabajando en coordinación con los operadores y entidades correspondientes para normalizar el servicio a la mayor brevedad posible.",
+    "normalidad": "Importante: Nos complace informarte que la novedad presentada en el procesamiento de recargas a Venezuela ha sido solucionada y el servicio se ha normalizado por completo. Las transacciones pendientes han sido procesadas correctamente. Agradecemos tu paciencia y comprensión durante la atención de esta situación.",
+    "intermitencia": "Importante: Por medio del presente informamos que actualmente el servicio de recargas a Venezuela puede presentar intermitencias o demoras en su procesamiento y acreditación. Nos encontramos validando la situación con nuestros socios y proveedores para darle solución lo antes posible."
+  },
+  {
+    "servicio": "PSE – Compras de Saldo",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que actualmente el medio de recaudo PSE presenta fallas temporales que pueden afectar la correcta asignación de las compras de saldo. Nuestro equipo se encuentra validando la novedad con la entidad correspondiente para restablecer el servicio a la mayor brevedad posible.",
+    "normalidad": "Importante: Nos complace informarte que en este momento el medio de recaudo PSE se encuentra operando con normalidad para las compras de saldo. Agradecemos sinceramente tu paciencia y confianza mientras trabajamos para brindarte un servicio continuo y confiable.",
+    "intermitencia": "Importante: Por medio del presente informamos que actualmente el medio de recaudo PSE presenta intermitencias que pueden generar demoras en la asignación de las compras de saldo. Nos encontramos validando la novedad con la entidad correspondiente para solucionar la situación lo antes posible."
+  },
+  {
+    "servicio": "Varios",
+    "categoria": "general",
+    "falla": "Importante: Por medio del presente informamos que en el momento los siguientes productos que presentan fallas temporales: 1.  2.  Nos encontramos validando la novedad con la entidad para solucionar lo antes posible.",
+    "normalidad": "Importante: Nos complace informarte que en este momento los siguientes productos están operando con normalidad: 1. 2. Agradecemos sinceramente tu paciencia mientras trabajamos para brindarte el mejor servicio posible.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento los siguientes productos presentan intermitencias: 1.  2. Nos encontramos validando la novedad con la entidad para solucionar lo antes posible."
+  },
+  {
+    "servicio": "envíos bre-b",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que, en este momento, el servicio de Envíos Bre-B presenta fallas, debido a un reinicio de servidores confirmado por el Banco de la República. En cuanto el servicio se normalice, estaremos notificando. Agradecemos su comprensión.",
+    "normalidad": "IMPORTANTE: Por medio del presente informamos que, en este momento, el servicio de Envíos Bre-B se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que, en este momento, el servicio de Envíos Bre-B presenta intermitencias, debido a un reinicio de servidores confirmado por el Banco de la República. En cuanto el servicio se normalice, estaremos notificando. Agradecemos su comprensión."
+  },
+  {
+    "servicio": "soat",
+    "categoria": "seguros",
+    "falla": "Importante: Por medio del presente informamos que en el momento Soat, presenta fallas temporales, nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos su comprensión.",
+    "normalidad": "IMPORTANTE: Por medio del presente informamos que en el momento Soat, se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Soat, presenta intermitencias, nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos su comprensión."
+  },
+  {
+    "servicio": "Recargas Internacionales – Movistar Venezuela",
+    "categoria": "telecomunicaciones",
+    "falla": "Importante: Por medio del presente informamos que actualmente se presenta una novedad en el procesamiento de las recargas dirigidas específicamente a líneas del operador Movistar Venezuela. Nuestro equipo se encuentra trabajando en coordinación con el operador para identificar y solucionar la causa, con el fin de normalizar el servicio a la mayor brevedad posible.",
+    "normalidad": "Importante: Nos complace informarte que la novedad presentada en el procesamiento de recargas a líneas Movistar Venezuela ha sido solucionada. El servicio se ha restablecido por completo y las transacciones afectadas han sido compensadas o procesadas correctamente. Agradecemos tu paciencia.",
+    "intermitencia": "Importante: Por medio del presente informamos que el servicio de recargas a líneas de Movistar Venezuela puede presentar intermitencias, demoras o fallas ocasionales en su acreditación. Estamos en contacto directo con el operador para estabilizar la conexión y garantizar el funcionamiento óptimo del servicio."
+  },
+  {
+    "servicio": "Claro",
+    "categoria": "telecomunicaciones",
+    "falla": "Importante: Por medio del presente informamos que en el momento el operador CLARO, presenta fallas temporales en PAQUETERIA Y RECARGAS nos encontramos validando la novedad con el operador para solucionar lo antes posible. Agradecemos su comprensión.",
+    "normalidad": "Importante: Por medio del presente informamos que en el momento el operador CLARO, presenta normalidad en Paquetería y Recargas. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento el operador CLARO, presenta intermitencias en PAQUETERIA Y RECARGAS nos encontramos validando la novedad con el operador para solucionar lo antes posible. Agradecemos su comprensión."
+  },
+  {
+    "servicio": "Movistar",
+    "categoria": "telecomunicaciones",
+    "falla": "Importante: Por medio del presente informamos que en el momento el operador Movistar, presenta fallas temporales en PAQUETERIA Y RECARGAS nos encontramos validando la novedad con el operador para solucionar lo antes posible. Agradecemos su comprensión.",
+    "normalidad": "Importante: Por medio del presente informamos que en el momento el operador Movistar, presenta normalidad en Paquetería y Recargas. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento el operador Movistar, presenta intermitencias en PAQUETERIA Y RECARGAS nos encontramos validando la novedad con el operador para solucionar lo antes posible. Agradecemos su comprensión."
+  },
+  {
+    "servicio": "Recargas Internacionales – Movilnet Venezuela",
+    "categoria": "telecomunicaciones",
+    "falla": "Importante: Por medio del presente informamos que actualmente se presenta una novedad que afecta el procesamiento y la acreditación de recargas dirigidas a líneas del operador Movilnet Venezuela. Nuestro equipo técnico se encuentra trabajando de manera conjunta con el operador para resolver la situación y normalizar el servicio a la mayor brevedad posible.",
+    "normalidad": "Importante: Nos complace informarte que la novedad presentada en el servicio de recargas a líneas Movilnet Venezuela ha sido resuelta. La conectividad y el procesamiento de transacciones se han restablecido por completo. Agradecemos tu paciencia y confianza durante este proceso.",
+    "intermitencia": "Importante: Por medio del presente informamos que el servicio de recargas a líneas de Movilnet Venezuela puede presentar intermitencias o inestabilidad en la acreditación de saldo. Estamos monitoreando constantemente la conexión con el operador y aplicando correctivos para garantizar la estabilidad del servicio."
+  },
+  {
+    "servicio": "Tigo",
+    "categoria": "telecomunicaciones",
+    "falla": "Importante: Por medio del presente informamos que en el momento el operador Tigo, presenta fallas temporales en PAQUETERIA Y RECARGAS nos encontramos validando la novedad con el operador para solucionar lo antes posible. Agradecemos su comprensión.",
+    "normalidad": "Importante: Por medio del presente informamos que en el momento el operador Tigo, presenta Normalidad en Paquetería y Recargas. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento el operador Tigo, presenta intermitencias en PAQUETERIA Y RECARGAS nos encontramos validando la novedad con el operador para solucionar lo antes posible. Agradecemos su comprensión."
+  },
+  {
+    "servicio": "Wom",
+    "categoria": "telecomunicaciones",
+    "falla": "Importante: Por medio del presente informamos que en el momento el operador Wom, presenta fallas temporales en PAQUETERIA Y RECARGAS nos encontramos validando la novedad con el operador para solucionar lo antes posible. Agradecemos su comprensión.",
+    "normalidad": "Importante: Por medio del presente informamos que en el momento el operador Wom, presenta Normalidad en Paquetería y Recargas. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento el operador Wom, presenta intermitencias en PAQUETERIA Y RECARGAS nos encontramos validando la novedad con el operador para solucionar lo antes posible. Agradecemos su comprensión."
+  },
+  {
+    "servicio": "Éxito",
+    "categoria": "telecomunicaciones",
+    "falla": "Importante: Por medio del presente informamos que en el momento el operador Éxito, presenta fallas temporales en PAQUETERIA Y RECARGAS nos encontramos validando la novedad con el operador para solucionar lo antes posible. Agradecemos su comprensión.",
+    "normalidad": "Importante: Por medio del presente informamos que en el momento el operador Éxito, presenta Normalidad en Paquetería y Recargas. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento el operador Éxito, presenta intermitencias en PAQUETERIA Y RECARGAS nos encontramos validando la novedad con el operador para solucionar lo antes posible. Agradecemos su comprensión."
+  },
+  {
+    "servicio": "Virgin",
+    "categoria": "telecomunicaciones",
+    "falla": "Importante: Por medio del presente informamos que en el momento el operador Virgin, presenta fallas temporales en PAQUETERIA Y RECARGAS nos encontramos validando la novedad con el operador para solucionar lo antes posible. Agradecemos su comprensión.",
+    "normalidad": "Importante: Por medio del presente informamos que en el momento el operador Virgin, presenta Normalidad en Paquetería y Recargas. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento el operador Virgin, presenta intermitencias en PAQUETERIA Y RECARGAS nos encontramos validando la novedad con el operador para solucionar lo antes posible. Agradecemos su comprensión."
+  },
+  {
+    "servicio": "Obligaciones Agrario",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Obligaciones Agrario presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Obligaciones Agrario se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Obligaciones Agrario presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Recaudos Agrario",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Recaudos Agrario presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Recaudos Agrario se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Recaudos Agrario presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Retiros Agrario",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Retiros Agrario presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Retiros Agrario se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Retiros Agrario presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Depositos Agrario",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Depósitos Agrario presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Depósitos Agrario se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Depósitos Agrario presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Betplay Meta",
+    "categoria": "entretenimiento",
+    "falla": "Importante: Por medio del presente informamos que en el momento Betplay Meta presenta fallas temporales. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Betplay Meta se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Betplay Meta presenta intermitencias. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Betplay Quindio",
+    "categoria": "entretenimiento",
+    "falla": "Importante: Por medio del presente informamos que en el momento Betplay Quindio presenta fallas temporales. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Betplay Quindio se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Betplay Quindio presenta intermitencias. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Betplay Risaralda",
+    "categoria": "entretenimiento",
+    "falla": "Importante: Por medio del presente informamos que en el momento Betplay Risaralda presenta fallas temporales. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Betplay Risaralda se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Betplay Risaralda presenta intermitencias. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Corresponsalía Caja Social",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Corresponsalía Caja Social presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Corresponsalía Caja Social se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Corresponsalía Caja Social presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Obligaciones Caja Social",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Obligaciones Caja Social presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Obligaciones Caja Social se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Obligaciones Caja Social presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Retiros Caja Social",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Retiros Caja Social presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Retiros Caja Social se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Retiros Caja Social presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Depositos Caja Social",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Depósitos Caja Social presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Depósitos Caja Social se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Depósitos Caja Social presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Recaudos Aval",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Recaudos Aval presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Recaudos Aval se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Recaudos Aval presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "SNR - Servicio de Recargas",
+    "categoria": "telecomunicaciones",
+    "falla": "¡Atención! Te informamos que, por el día de hoy, no contaremos con el producto de SNR, debido a una ventana de mantenimiento que requiere el producto por una actualización en su costo. Agradecemos tu comprensión. #SOMOSGENERACIONBE",
+    "normalidad": "¡Excelentes noticias! El producto SNR ha sido reactivado tras completar exitosamente la ventana de mantenimiento y la actualización de costo. El servicio está disponible nuevamente en su totalidad. ¡Gracias por tu paciencia! #SOMOSGENERACIONBE",
+    "intermitencia": "Importante: El producto SNR podría presentar disponibilidad intermitente durante el día de hoy, debido a trabajos de mantenimiento programados para la actualización de su costo. Estamos gestionando el proceso para minimizar las afectaciones. #SOMOSGENERACIONBE"
+  },
+  {
+    "servicio": "Obligaciones Aval",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Obligaciones Aval presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Obligaciones Aval se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Obligaciones Aval presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Paquetigo y Tigo Regional",
+    "categoria": "telecomunicaciones",
+    "falla": "IMPORTANTE! Por medio del presente informamos que en el momento el Producto Paquetigo y Tigo Regional presenta fallas temporales. Actualmente, nos encontramos validando la novedad con el proveedor para solucionarla en el menor tiempo posible. Agradecemos tu comprensión. #SOMOSGENERACIONBE",
+    "normalidad": "IMPORTANTE! Por medio del presente informamos que las fallas presentadas en el Producto Paquetigo y Tigo Regional han sido completamente solucionadas. El servicio se encuentra restablecido y operativo con normalidad. Agradecemos tu paciencia y confianza. #SOMOSGENERACIONBE",
+    "intermitencia": "IMPORTANTE! Por medio del presente informamos que el Producto Paquetigo y Tigo Regional puede presentar intermitencias o inestabilidad en su funcionamiento. Continuamos trabajando con nuestro proveedor para estabilizar el servicio por completo. Agradecemos tu comprensión. #SOMOSGENERACIONBE"
+  },
+  {
+    "servicio": "Retiros Aval",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Retiros Aval presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Retiros Aval se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Retiros Aval presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Depositos Aval",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Depósitos Aval presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Depósitos Aval se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Depósitos Aval presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Recaudos Davivienda",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Recaudos Davivienda presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Recaudos Davivienda se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Recaudos Davivienda presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Obligaciones Davivienda",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Obligaciones Davivienda presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Obligaciones Davivienda se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Obligaciones Davivienda presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Retiros Davivienda",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Retiros Davivienda presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Retiros Davivienda se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Retiros Davivienda presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Depositos Davivienda",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Depósitos Davivienda presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Depósitos Davivienda se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Depósitos Davivienda presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Compra de saldo Banco de Agrario",
+    "categoria": "bancos",
+    "falla": "Importante: Buen día. Las compras de saldo con Banco Agrario se encuentran presentando fallas y demoras para aplicarse, por favor recomendar a los clientes otros medios de recaudo. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Nos complace informarte que el Portal del Banco Agrario, ya se encuentra en estado normal y las operaciones se pueden realizar sin inconvenientes. Agradecemos sinceramente tu paciencia, puedes continuar con tus transacciones de manera habitual.",
+    "intermitencia": "Importante: Buen día. Las compras de saldo con Banco Agrario está presentando intermitencia y demora para aplicarse, por favor recomendar a los clientes otros medios de recaudo. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Compra de saldo Banco de Bogota",
+    "categoria": "bancos",
+    "falla": "Importante: Buen día. Las compras de saldo con Banco Bogotá, se encuentran presentando fallas y demoras para aplicarse, por favor recomendar a los clientes otros medios de recaudo. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Nos complace informarte que el Portal del Banco de Bogotá, ya se encuentra en estado normal y las operaciones se pueden realizar sin inconvenientes. Agradecemos sinceramente tu paciencia, puedes continuar con tus transacciones de manera habitual.",
+    "intermitencia": "Importante: Buen día. Las compras de saldo con Banco Bogotá, está presentando intermitencia y demora para aplicarse, por favor recomendar a los clientes otros medios de recaudo. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Compra de saldo Banco de Davivienda",
+    "categoria": "bancos",
+    "falla": "Importante: Buen día. Las compras de saldo con Banco Davivienda se encuentran presentando fallas y demoras para aplicarse, por favor recomendar a los clientes otros medios de recaudo. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Nos complace informarte que el Portal del Banco de Davivienda, ya se encuentra en estado normal y las operaciones se pueden realizar sin inconvenientes. Agradecemos sinceramente tu paciencia, puedes continuar con tus transacciones de manera habitual.",
+    "intermitencia": "Importante: Nos complace informarte que el Portal del Banco de Davivienda, ya se encuentra en estado normal y las operaciones se pueden realizar sin inconvenientes. Agradecemos sinceramente tu paciencia, puedes continuar con tus transacciones de manera habitual."
+  },
+  {
+    "servicio": "Compra de saldo Banco de Bancolombia",
+    "categoria": "bancos",
+    "falla": "Importante: Buen día. Las compras de saldo con Banco Bancolombia se encuentran presentando fallas y demoras para aplicarse, por favor recomendar a los clientes otros medios de recaudo. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Nos complace informarte que el Portal del Banco de Bancolombia, ya se encuentra en estado normal y las operaciones se pueden realizar sin inconvenientes. Agradecemos sinceramente tu paciencia, puedes continuar con tus transacciones de manera habitual.",
+    "intermitencia": "Importante: Nos complace informarte que el Portal del Banco de Bancolombia, ya se encuentra en estado normal y las operaciones se pueden realizar sin inconvenientes. Agradecemos sinceramente tu paciencia, puedes continuar con tus transacciones de manera habitual."
+  },
+  {
+    "servicio": "Compra de saldo Nequi",
+    "categoria": "bancos",
+    "falla": "Importante: Buen día. Las compras de saldo con Nequi se encuentran presentando fallas y demoras para aplicarse, por favor recomendar a los clientes otros medios de recaudo. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Nos complace informarte que el Portal de Nequi, ya se encuentra en estado normal y las operaciones se pueden realizar sin inconvenientes. Agradecemos sinceramente tu paciencia, puedes continuar con tus transacciones de manera habitual.",
+    "intermitencia": "Importante: Nos complace informarte que el Portal de Nequi, ya se encuentra en estado normal y las operaciones se pueden realizar sin inconvenientes. Agradecemos sinceramente tu paciencia, puedes continuar con tus transacciones de manera habitual."
+  },
+  {
+    "servicio": "compras de saldo de bancolombia (tarjeta recaudo)",
+    "categoria": "bancos",
+    "falla": "Importante: Buen día, las compras de saldo de Bancolombia, (las compras realizadas con tarjeta de recaudo al convenio 58494) está presentando fallas, por favor recomendar a los clientes otros medios de recaudo. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Nos complace informarte que el Banco Bancolombia ya se encuentra en estado normal y las operaciones se pueden realizar sin inconvenientes. Agradecemos sinceramente tu paciencia, puedes continuar con tus transacciones de manera habitual.",
+    "intermitencia": "Importante: Buen día, las compras de saldo de Bancolombia, (las compras realizadas con tarjeta de recaudo al convenio 58494) está presentando intermitencia y demora para aplicarse, por favor recomendar a los clientes otros medios de recaudo. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Novedad QR",
+    "categoria": "general",
+    "falla": "Importante: Mediante la presente se notifica una novedad con el servicio QR estático e interoperable, estamos atentos a novedades por parte de la entidad, les estaremos informando una vez sea restablecido el servicio. Agradecemos tu comprensión y paciencia mientras notifican normalidad.",
+    "normalidad": "Importante: Nos complace informarte que el QR ya se encuentra en estado normal y las operaciones se pueden realizar sin inconvenientes. Agradecemos sinceramente tu paciencia, puedes continuar con tus transacciones de manera habitual.",
+    "intermitencia": "IMPORTANTE: Informamos que en el momento se encuentra presentando intermitencias el servicio de QR estático e interoperable. Nuestro equipo se encuentra trabajando para solucionarlo a la mayor brevedad posible y ofrecemos disculpas por los inconvenientes que esto pueda ocasionar. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Novedad lector de códigos por cámara",
+    "categoria": "general",
+    "falla": "Importante: En este momento presentamos una falla en el lector de códigos por cámara en los dispositivos móviles. Mientras se restablece el servicio, puedes realizar los pagos de forma manual sin ningún inconveniente. Estamos trabajando para solucionarlo lo antes posible.",
+    "normalidad": "Importante: Informamos que el lector de códigos por cámara en dispositivos móviles ya se encuentra funcionando con normalidad. Los pagos pueden realizarse nuevamente mediante el lector sin inconvenientes. Agradecemos su paciencia y comprensión.",
+    "intermitencia": "Importante: En este momento presentamos una intermitencia en el lector de códigos por cámara en los dispositivos móviles. Mientras se restablece el servicio, puedes realizar los pagos de forma manual sin ningún inconveniente. Estamos trabajando para solucionarlo lo antes posible."
+  },
+  {
+    "servicio": "Directv",
+    "categoria": "entretenimiento",
+    "falla": "Importante: Por medio del presente informamos que en el momento el operador Directv, presenta fallas temporales en recargas, nos encontramos validando la novedad con el operador para solucionar lo antes posible.",
+    "normalidad": "Importante: Por medio del presente informamos que en el momento el operador Directv, presenta Normalidad en Recargas. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento el operador Directv, presenta intermitencias en recargas, nos encontramos validando la novedad con el operador para solucionar lo antes posible. Agradecemos su comprensión."
+  },
+  {
+    "servicio": "Energia prepago Cens",
+    "categoria": "servicios_publicos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Energía prepago Cens presenta fallas temporales. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Energía prepago Cens se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Energía prepago Cens presenta intermitencias. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Energia prepago ESSA",
+    "categoria": "servicios_publicos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Energía prepago ESSA presenta fallas temporales. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Energía prepago ESSA se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Energía prepago ESSA presenta intermitencias. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Energia prepago EPM",
+    "categoria": "servicios_publicos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Energía prepago EPM presenta fallas temporales. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Energía prepago EPM se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Energía prepago EPM presenta intermitencias. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Pin Directv",
+    "categoria": "entretenimiento",
+    "falla": "Importante: Por medio del presente informamos que en el momento Pin Directv presenta fallas temporales. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Pin Directv se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Pin Directv presenta intermitencias. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Pines netflix",
+    "categoria": "entretenimiento",
+    "falla": "Importante: Por medio del presente informamos que en el momento Pines Netflix presenta fallas temporales. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Pines Netflix se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Pines Netflix presenta intermitencias. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "yajuego",
+    "categoria": "entretenimiento",
+    "falla": "Importante: Por medio del presente informamos que en el momento Yajuego presenta fallas temporales. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Yajuego se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Yajuego presenta intermitencias. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "wplay",
+    "categoria": "entretenimiento",
+    "falla": "Importante: Por medio del presente informamos que en el momento Wplay presenta fallas temporales. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Wplay se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Wplay presenta intermitencias. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Certificados de libertad y tradición (SNR)",
+    "categoria": "servicios_publicos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Certificados de libertad y tradición (SNR) presenta fallas temporales. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Certificados de libertad y tradición (SNR) se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Certificados de libertad y tradición (SNR) presenta intermitencias. Nos encontramos validando la novedad con el proveedor para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Retiro Dale",
+    "categoria": "bancos",
+    "falla": "Importante: Por medio del presente informamos que en el momento Retiro Dale presenta fallas temporales. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión.",
+    "normalidad": "Importante: Informamos que en el momento Retiro Dale se encuentra funcionando con normalidad. Agradecemos su comprensión.",
+    "intermitencia": "Importante: Por medio del presente informamos que en el momento Retiro Dale presenta intermitencias. Nos encontramos validando la novedad con el banco para solucionar lo antes posible. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Lentitud en la plataforma",
+    "categoria": "general",
+    "falla": "Importante: Por medio del presente informamos que en este momento se presenta novedad de visualización y lentitud en la plataforma, nos encontramos trabajando para solucionarlo disculpa las molestias presentadas.",
+    "normalidad": "IMPORTANTE: Informamos que en el momento la plataforma presenta normalidad y está funcionando con normalidad del servicio disculpe las molestias. Agradecemos su comprensión.",
+    "intermitencia": "IMPORTANTE: Informamos que en el momento la plataforma presenta intermitencias en su funcionamiento. Nuestro equipo se encuentra trabajando para solucionarlo a la mayor brevedad posible y ofrecemos disculpas por los inconvenientes que esto pueda ocasionar. Agradecemos tu comprensión."
+  },
+  {
+    "servicio": "Caida Tickets",
+    "categoria": "general",
+    "falla": "Importante: Queremos informarte que actualmente nuestra herramienta de Tickets presenta una novedad temporal. Mientras realizamos la validación y solución correspondiente, si tienes algún caso que necesites escalar, te agradecemos hacerlo a través de nuestro correo soporte@bemovil.net. Agradecemos mucho tu comprensión y paciencia.",
+    "normalidad": "Queremos informarte que la plataforma de Tickets ya se encuentra funcionando con normalidad. Agradecemos tu comprensión y paciencia durante el proceso de validación y solución. En adelante, podrás continuar realizando tus gestiones de manera habitual a través de la herramienta.",
+    "intermitencia": "Importante: Queremos informarte que actualmente nuestra herramienta de Tickets presenta intermitencia temporal. Mientras realizamos la validación y solución correspondiente, si tienes algún caso que necesites escalar, te agradecemos hacerlo a través de nuestro correo soporte@bemovil.net. Agradecemos mucho tu comprensión y paciencia."
+  }
+]

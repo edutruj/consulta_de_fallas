@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes de Servicios - Plataforma</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo Plataforma" class="logo" id="logo">
+                <div class="header-text">
+                    <h1><i class="fas fa-broadcast-tower"></i> Mensajes Para Reportar Fallas</h1>
+                    <p>Central de mensajes para fallas, normalidad e intermitencias</p>
+                </div>
+            </div>
+            
+            <div class="header-controls">
+                <button class="btn btn-admin" onclick="toggleAdminPanel()">
+                    <i class="fas fa-cog"></i> Administrar
+                </button>
+                <div class="stats">
+                    <span class="stat-item">
+                        <i class="fas fa-database"></i>
+                        <span id="totalServicios">0</span> servicios
+                    </span>
+                    <span class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="ultimaActualizacion">Hoy</span>
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <section id="adminPanel" class="admin-panel hidden">
+            <div class="admin-header">
+                <h2><i class="fas fa-edit"></i> Administrar Scripts</h2>
+                <button class="btn btn-close" onclick="toggleAdminPanel()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="admin-content">
+                <div class="admin-actions">
+                    <button class="btn btn-success" onclick="mostrarFormularioNuevo()">
+                        <i class="fas fa-plus"></i> Nuevo Script
+                    </button>
+                    <button class="btn btn-warning" onclick="exportarBackup()">
+                        <i class="fas fa-download"></i> Exportar Backup
+                    </button>
+                    <button class="btn btn-info" onclick="importarBackup()">
+                        <i class="fas fa-upload"></i> Importar Backup
+                    </button>
+                </div>
+                
+                <div id="formScript" class="form-container hidden">
+                    <h3 id="formTitulo">Nuevo Script</h3>
+                    <form id="scriptForm" onsubmit="guardarScript(event)">
+                        <input type="hidden" id="scriptId" value="">
+                        
+                        <div class="form-group">
+                            <label for="servicioNombre">Nombre del Servicio *</label>
+                            <input type="text" id="servicioNombre" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="servicioCategoria">Categoría</label>
+                            <select id="servicioCategoria" class="form-control">
+                                <option value="telecomunicaciones">Telecomunicaciones</option>
+                                <option value="bancos">Bancos</option>
+                                <option value="servicios_publicos">Servicios Públicos</option>
+                                <option value="entretenimiento">Entretenimiento</option>
+                                <option value="general">General</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="scriptFalla">Script Falla *</label>
+                                <textarea id="scriptFalla" class="form-control script-area" rows="6" required></textarea>
+                                <div class="char-count" id="countFalla">0 caracteres</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="scriptNormalidad">Script Normalidad *</label>
+                                <textarea id="scriptNormalidad" class="form-control script-area" rows="6" required></textarea>
+                                <div class="char-count" id="countNormalidad">0 caracteres</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="scriptIntermitencia">Script Intermitencia *</label>
+                                <textarea id="scriptIntermitencia" class="form-control script-area" rows="6" required></textarea>
+                                <div class="char-count" id="countIntermitencia">0 caracteres</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="cancelarEdicion()">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Guardar Script
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="listaScripts" class="scripts-list">
+                    <h3>Scripts Existentes</h3>
+                    <div class="search-container">
+                        <input type="text" id="buscarScripts" class="form-control" 
+                               placeholder="Buscar scripts..." oninput="filtrarScripts()">
+                    </div>
+                    <div id="scriptsContainer" class="scripts-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <div class="search-header">
+                <h2>
+                    <i class="fas fa-search"></i>
+                    Consultar Estado de Servicios
+                </h2>
+                <p>Busca rápidamente el estado actual de cualquier servicio de la plataforma</p>
+            </div>
+            
+            <div class="search-box">
+                <div class="search-input-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="buscarServicio" class="search-input" 
+                           placeholder="Escribe el nombre del servicio que deseas consultar...">
+                    <button class="btn btn-clear" onclick="limpiarBusqueda()" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%);">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="search-actions">
+                    <button class="btn btn-primary btn-search" onclick="buscarServicios()">
+                        <i class="fas fa-search"></i> Buscar Servicio
+                    </button>
+             
+            </div>
+        </section>
+
+        <section id="resultadosSection" class="results-section hidden">
+            <div class="results-header">
+                <h2><i class="fas fa-poll"></i> Resultados de Búsqueda</h2>
+                <div class="results-info">
+                    <span id="contadorResultados" class="results-count">0 servicios encontrados</span>
+                    <div class="results-actions">
+                        <button class="btn btn-copy" onclick="copiarResultados()">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                        <button class="btn btn-export" onclick="exportarResultados()">
+                            <i class="fas fa-download"></i> Exportar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="resultadosContainer" class="results-container"></div>
+        </section>
+
+        <div id="noEncontrado" class="not-found hidden">
+            <i class="fas fa-search-minus"></i>
+            <h3>No se encontraron servicios</h3>
+            <p>Intenta con otros términos de búsqueda</p>
+            <button class="btn btn-primary" onclick="mostrarTodos()">
+                <i class="fas fa-eye"></i> Ver todos los servicios
+            </button>
+        </div>
+
+        <section class="services-section">
+            <div class="section-header">
+                <h2><i class="fas fa-table"></i> Todos los Servicios</h2>
+                <p>Listado completo de servicios disponibles en la plataforma</p>
+                <div class="table-controls">
+                    <input type="text" id="filtrarTabla" class="form-control" 
+                           placeholder="Filtrar servicios...">
+                    <select id="filtrarCategoria" class="form-control">
+                        <option value="">Todas las categorías</option>
+                        <option value="telecomunicaciones">Telecomunicaciones</option>
+                        <option value="bancos">Bancos</option>
+                        <option value="servicios_publicos">Servicios Públicos</option>
+                        <option value="entretenimiento">Entretenimiento</option>
+                        <option value="general">General</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table class="services-table">
+                    <thead>
+                        <tr>
+                            <th>Servicio</th>
+                            <th>Categoría</th>
+                            <th>Falla</th>
+                            <th>Normalidad</th>
+                            <th>Intermitencia</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaServicios"></tbody>
+                </table>
+            </div>
+            
+            <div class="table-footer">
+                <p><i class="fas fa-info-circle"></i> Mostrando <span id="contadorTabla">0</span> servicios</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>
+                <i class="fas fa-sync-alt"></i> Sistema de Reportes de Servicios | 
+                <i class="fas fa-shield-alt"></i> Uso Interno
+            </p>
+            <p class="footer-version">v2.0 - Generación Be</p>
+        </footer>
+
+        <div class="floating-buttons">
+            <button id="btnTop" class="floating-btn btn-scroll-top hidden" onclick="scrollToTop()">
+                <i class="fas fa-chevron-up"></i>
+            </button>
+            <button class="floating-btn btn-admin-toggle" onclick="toggleAdminPanel()">
+                <i class="fas fa-edit"></i>
+            </button>
+        </div>
+
+        <div id="detallesModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitulo"></h3>
+                    <button class="btn-close-modal" onclick="cerrarModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="cerrarModal()">Cerrar</button>
+                    <button class="btn btn-primary" id="btnCopiarModal">Copiar Script</button>
+                </div>
+            </div>
+        </div>
+
+        <input type="file" id="importBackupInput" class="hidden" accept=".json">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/servicios.js"></script>
+    <script src="js/crud.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
