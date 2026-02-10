@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class="container">
+   
         <header class="header">
             <div class="logo-container">
                 <img src="logo.png" alt="Logo Plataforma" class="logo" id="logo">
@@ -36,6 +37,7 @@
             </div>
         </header>
 
+ 
         <section id="adminPanel" class="admin-panel hidden">
             <div class="admin-header">
                 <h2><i class="fas fa-edit"></i> Administrar Scripts</h2>
@@ -45,18 +47,16 @@
             </div>
             
             <div class="admin-content">
+    
                 <div class="admin-actions">
-                    <button class="btn btn-success" onclick="mostrarFormularioNuevo()">
+               
+                    <button class="btn btn-success" onclick="crud.mostrarFormularioNuevo()">
                         <i class="fas fa-plus"></i> Nuevo Script
                     </button>
-                    <button class="btn btn-warning" onclick="exportarBackup()">
-                        <i class="fas fa-download"></i> Exportar Backup
-                    </button>
-                    <button class="btn btn-info" onclick="importarBackup()">
-                        <i class="fas fa-upload"></i> Importar Backup
-                    </button>
+                  
                 </div>
                 
+  
                 <div id="formScript" class="form-container hidden">
                     <h3 id="formTitulo">Nuevo Script</h3>
                     <form id="scriptForm" onsubmit="guardarScript(event)">
@@ -107,6 +107,7 @@
                     </form>
                 </div>
                 
+        
                 <div id="listaScripts" class="scripts-list">
                     <h3>Scripts Existentes</h3>
                     <div class="search-container">
@@ -117,6 +118,7 @@
                 </div>
             </div>
         </section>
+
 
         <section class="search-section">
             <div class="search-header">
@@ -141,10 +143,11 @@
                     <button class="btn btn-primary btn-search" onclick="buscarServicios()">
                         <i class="fas fa-search"></i> Buscar Servicio
                     </button>
-             
+                </div>
             </div>
         </section>
 
+ 
         <section id="resultadosSection" class="results-section hidden">
             <div class="results-header">
                 <h2><i class="fas fa-poll"></i> Resultados de Búsqueda</h2>
@@ -164,6 +167,7 @@
             <div id="resultadosContainer" class="results-container"></div>
         </section>
 
+ 
         <div id="noEncontrado" class="not-found hidden">
             <i class="fas fa-search-minus"></i>
             <h3>No se encontraron servicios</h3>
@@ -172,6 +176,7 @@
                 <i class="fas fa-eye"></i> Ver todos los servicios
             </button>
         </div>
+
 
         <section class="services-section">
             <div class="section-header">
@@ -212,6 +217,7 @@
             </div>
         </section>
 
+
         <footer class="footer">
             <p>
                 <i class="fas fa-sync-alt"></i> Sistema de Reportes de Servicios | 
@@ -219,6 +225,7 @@
             </p>
             <p class="footer-version">v2.0 - Generación Be</p>
         </footer>
+
 
         <div class="floating-buttons">
             <button id="btnTop" class="floating-btn btn-scroll-top hidden" onclick="scrollToTop()">
@@ -229,6 +236,7 @@
             </button>
         </div>
 
+ 
         <div id="detallesModal" class="modal hidden">
             <div class="modal-content">
                 <div class="modal-header">
@@ -245,14 +253,38 @@
             </div>
         </div>
 
-        <input type="file" id="importBackupInput" class="hidden" accept=".json">
+
     </div>
 
+  
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/servicios.js"></script>
+  
     <script src="js/crud.js"></script>
     <script src="js/app.js"></script>
+    
+
+    <script>
+   
+        window.addEventListener('load', function() {
+            console.log('=== DEBUG INFORMACIÓN ===');
+            console.log('1. App disponible:', typeof app !== 'undefined');
+            console.log('2. CRUD disponible:', typeof crud !== 'undefined');
+            console.log('3. Servicios cargados:', app ? app.servicios.length : 'N/A');
+            
+          
+            const nuevoScriptBtn = document.querySelector('.btn-success[onclick*="crud.mostrarFormularioNuevo"]');
+            console.log('4. Botón Nuevo Script encontrado:', nuevoScriptBtn !== null);
+            
+        
+            if (typeof crud === 'undefined') {
+                console.error('ERROR: crud no está definido. Revisa la inicialización.');
+                console.log('Sugerencia: Verifica el orden de los scripts en HTML');
+                console.log('Debe ser: 1. crud.js, 2. app.js');
+            }
+        });
+    </script>
 </body>
 </html>
