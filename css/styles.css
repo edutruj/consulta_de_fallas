@@ -1159,3 +1159,20 @@ body {
         padding: 15px 10px;
     }
 }
+
+/* Agrega esto al final de tu archivo styles.css */
+.search-actions .btn-secondary {
+    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.search-actions .btn-secondary:hover {
+    background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.search-actions .btn-secondary i {
+    margin-right: 5px;
+}
