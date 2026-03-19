@@ -27,6 +27,7 @@ class ReportesApp {
             if (typeof CRUDScripts !== 'undefined') {
                 this.crud = new CRUDScripts(this);
                 window.crud = this.crud;
+                console.log('✅ CRUD inicializado correctamente');
             } else {
                 setTimeout(() => this.inicializarCRUD(), 500);
             }
@@ -37,19 +38,35 @@ class ReportesApp {
     
     async cargarServicios() {
         try {
-            const saved = localStorage.getItem('serviciosData');
-            if (saved) {
-                this.servicios = JSON.parse(saved);
-            } else {
+            // Intentar cargar desde servicios.js primero
+            if (typeof servicios !== 'undefined' && servicios.length > 0) {
+                this.servicios = JSON.parse(JSON.stringify(servicios));
+                console.log('✅ Servicios cargados desde servicios.js:', this.servicios.length);
+            } 
+            // Si no, intentar desde datosRespaldo
+            else if (typeof datosRespaldo !== 'undefined' && datosRespaldo.length > 0) {
+                this.servicios = JSON.parse(JSON.stringify(datosRespaldo));
+                console.log('✅ Servicios cargados desde datosRespaldo:', this.servicios.length);
+            }
+            // Última opción: fetch a servicios.json
+            else {
                 const response = await fetch('data/servicios.json');
                 if (!response.ok) throw new Error('No se pudo cargar el archivo de servicios');
                 this.servicios = await response.json();
-                this.guardarServicios();
+                console.log('✅ Servicios cargados desde servicios.json:', this.servicios.length);
             }
+            
+            // Guardar en localStorage como respaldo
+            this.guardarServicios();
+            
+            // Actualizar contador
             document.getElementById('totalServicios').textContent = this.servicios.length;
+            
         } catch (error) {
-            this.servicios = datosRespaldo || [];
-            document.getElementById('totalServicios').textContent = this.servicios.length;
+            console.error('Error cargando servicios:', error);
+            this.servicios = [];
+            document.getElementById('totalServicios').textContent = '0';
+            this.mostrarNotificacion('Error cargando servicios', 'error');
         }
     }
     
@@ -62,24 +79,6 @@ class ReportesApp {
     actualizarEstadisticas() {
         const fecha = localStorage.getItem('ultimaActualizacion') || 'Hoy';
         document.getElementById('ultimaActualizacion').textContent = fecha;
-        
-        let fallas = 0;
-        let normalidad = 0;
-        let intermitencias = 0;
-        
-        this.servicios.forEach(serv => {
-            if (serv.falla && serv.falla.trim()) fallas++;
-            if (serv.normalidad && serv.normalidad.trim()) normalidad++;
-            if (serv.intermitencia && serv.intermitencia.trim()) intermitencias++;
-        });
-        
-        const contadorFallas = document.getElementById('contadorFallas');
-        const contadorNormalidad = document.getElementById('contadorNormalidad');
-        const contadorIntermitencias = document.getElementById('contadorIntermitencias');
-        
-        if (contadorFallas) contadorFallas.textContent = fallas;
-        if (contadorNormalidad) contadorNormalidad.textContent = normalidad;
-        if (contadorIntermitencias) contadorIntermitencias.textContent = intermitencias;
     }
     
     initEventListeners() {
@@ -87,6 +86,15 @@ class ReportesApp {
         if (buscarInput) {
             buscarInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') this.buscarServicios();
+            });
+        }
+
+        // Botón de búsqueda
+        const btnSearch = document.querySelector('.btn-search');
+        if (btnSearch) {
+            btnSearch.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.buscarServicios();
             });
         }
 
@@ -134,8 +142,9 @@ class ReportesApp {
         const noEncontrado = document.getElementById('noEncontrado');
 
         const searchBtn = document.querySelector('.btn-search');
+        let originalText = '';
         if (searchBtn) {
-            const originalText = searchBtn.innerHTML;
+            originalText = searchBtn.innerHTML;
             searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando...';
             searchBtn.disabled = true;
         }
@@ -333,15 +342,25 @@ class ReportesApp {
     
     escapeHtml(text) {
         if (!text) return '';
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML.replace(/'/g, "\\'");
+        return String(text).replace(/[&<>"']/g, function(match) {
+            if (match === '&') return '&amp;';
+            if (match === '<') return '&lt;';
+            if (match === '>') return '&gt;';
+            if (match === '"') return '&quot;';
+            if (match === "'") return '&#39;';
+            return match;
+        });
     }
     
     resaltarTexto(texto, busqueda) {
-        if (!busqueda || !texto) return texto;
-        const regex = new RegExp(`(${busqueda.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
-        return texto.toString().replace(regex, '<mark>$1</mark>');
+        if (!texto) return '';
+        if (!busqueda) return texto;
+        try {
+            const regex = new RegExp(`(${busqueda.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
+            return texto.toString().replace(regex, '<mark>$1</mark>');
+        } catch (e) {
+            return texto;
+        }
     }
     
     crearResumen(texto, maxLength = 100) {
@@ -356,6 +375,7 @@ class ReportesApp {
             'bancos': 'Bancos',
             'servicios_publicos': 'Servicios Públicos',
             'entretenimiento': 'Entretenimiento',
+            'seguros': 'Seguros',
             'general': 'General'
         };
         return categorias[categoria] || 'General';
@@ -404,6 +424,8 @@ class ReportesApp {
         if (!texto) return;
         navigator.clipboard.writeText(texto).then(() => {
             this.mostrarNotificacion('Texto copiado al portapapeles', 'success');
+        }).catch(() => {
+            alert('Texto copiado (usar Ctrl+C):\n\n' + texto);
         });
     }
     
@@ -441,10 +463,13 @@ class ReportesApp {
         
         let csv = 'Servicio,Categoria,Falla,Normalidad,Intermitencia\n';
         this.resultadosActuales.forEach(serv => {
-            csv += `"${serv.servicio}","${serv.categoria || 'general'}","${serv.falla || ''}","${serv.normalidad || ''}","${serv.intermitencia || ''}"\n`;
+            const falla = (serv.falla || '').replace(/"/g, '""');
+            const normalidad = (serv.normalidad || '').replace(/"/g, '""');
+            const intermitencia = (serv.intermitencia || '').replace(/"/g, '""');
+            csv += `"${serv.servicio}","${serv.categoria || 'general'}","${falla}","${normalidad}","${intermitencia}"\n`;
         });
         
-        const blob = new Blob([csv], { type: 'text/csv' });
+        const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -534,16 +559,16 @@ class ReportesApp {
         modalBody.innerHTML = `
             <div class="modal-grid">
                 <div class="modal-section">
-                    <h4><i class="fas fa-exclamation-triangle text-danger"></i> Falla</h4>
-                    <div class="modal-script">${servicio.falla || 'No especificado'}</div>
+                    <h4><i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i> Falla</h4>
+                    <div class="modal-script">${this.escapeHtml(servicio.falla || 'No especificado').replace(/\n/g, '<br>')}</div>
                 </div>
                 <div class="modal-section">
-                    <h4><i class="fas fa-check-circle text-success"></i> Normalidad</h4>
-                    <div class="modal-script">${servicio.normalidad || 'No especificado'}</div>
+                    <h4><i class="fas fa-check-circle" style="color: #10b981;"></i> Normalidad</h4>
+                    <div class="modal-script">${this.escapeHtml(servicio.normalidad || 'No especificado').replace(/\n/g, '<br>')}</div>
                 </div>
                 <div class="modal-section">
-                    <h4><i class="fas fa-exclamation-circle text-warning"></i> Intermitencia</h4>
-                    <div class="modal-script">${servicio.intermitencia || 'No especificado'}</div>
+                    <h4><i class="fas fa-exclamation-circle" style="color: #f59e0b;"></i> Intermitencia</h4>
+                    <div class="modal-script">${this.escapeHtml(servicio.intermitencia || 'No especificado').replace(/\n/g, '<br>')}</div>
                 </div>
             </div>
         `;
@@ -573,9 +598,11 @@ ${servicio.intermitencia || 'No especificado'}
     }
 }
 
+// Inicializar la aplicación
 const app = new ReportesApp();
 window.app = app;
 
+// Funciones globales
 function toggleAdminPanel() {
     const panel = document.getElementById('adminPanel');
     if (panel) panel.classList.toggle('hidden');
@@ -583,6 +610,12 @@ function toggleAdminPanel() {
 
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function cerrarModal() {
+    if (window.app) {
+        window.app.cerrarModal();
+    }
 }
 
 function mostrarFormularioNuevo() {
@@ -599,74 +632,32 @@ function mostrarFormularioNuevo() {
     }
 }
 
-const additionalStyles = `
-.modal-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+function buscarServicios() {
+    if (window.app) {
+        window.app.buscarServicios();
+    }
 }
 
-.modal-section {
-    background: var(--bg-light);
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
+function limpiarBusqueda() {
+    if (window.app) {
+        window.app.limpiarBusqueda();
+    }
 }
 
-.modal-section h4 {
-    margin-bottom: 12px;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+function mostrarTodos() {
+    if (window.app) {
+        window.app.mostrarTodos();
+    }
 }
 
-.modal-script {
-    white-space: pre-wrap;
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    line-height: 1.5;
-    background: white;
-    padding: 12px;
-    border-radius: 4px;
-    border: 1px solid var(--border-color);
-    max-height: 300px;
-    overflow-y: auto;
+function copiarResultados() {
+    if (window.app) {
+        window.app.copiarResultados();
+    }
 }
 
-.category-badge {
-    display: inline-block;
-    padding: 4px 8px;
-    background: var(--bg-light);
-    border-radius: 4px;
-    font-size: 12px;
-    color: var(--text-secondary);
+function exportarResultados() {
+    if (window.app) {
+        window.app.exportarResultados();
+    }
 }
-
-.text-primary { color: var(--text-primary); }
-.text-secondary { color: var(--text-secondary); }
-.text-muted { color: var(--text-secondary); opacity: 0.7; }
-
-.font-semibold { font-weight: 600; }
-
-mark {
-    background: #fef3c7;
-    padding: 2px 4px;
-    border-radius: 2px;
-}
-
-.status-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.dot-falla { background: #dc2626; }
-.dot-normalidad { background: #059669; }
-.dot-intermitencia { background: #d97706; }
-`;
-
-const styleSheet = document.createElement('style');
-styleSheet.textContent = additionalStyles;
-document.head.appendChild(styleSheet);
