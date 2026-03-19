@@ -49,11 +49,13 @@
             <div class="admin-content">
     
                 <div class="admin-actions">
-               
                     <button class="btn btn-success" onclick="crud.mostrarFormularioNuevo()">
                         <i class="fas fa-plus"></i> Nuevo Script
                     </button>
-                  
+                    <!-- ÚNICO BOTÓN NECESARIO -->
+                    <button class="btn btn-primary" onclick="recargarDatosForzado()" style="background-color: #dc3545;">
+                        <i class="fas fa-sync-alt"></i> FORZAR ACTUALIZACIÓN
+                    </button>
                 </div>
                 
   
@@ -253,36 +255,123 @@
             </div>
         </div>
 
+        <!-- SIMPLE DEBUG PANEL -->
+        <div id="simpleDebug" style="position: fixed; bottom: 10px; left: 10px; background: #000; color: #0f0; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 12px; z-index: 10000; display: none;"></div>
 
     </div>
 
-  
+    <!-- SCRIPTS EN ORDEN CORRECTO -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/servicios.js"></script>
-  
-    <script src="js/crud.js"></script>
-    <script src="js/app.js"></script>
     
+    <!-- DATOS NUEVOS (VERIFICAR QUE ESTE ARCHIVO TENGA LOS TEXTOS CORREGIDOS) -->
+    <script src="js/servicios.js"></script>
+    
+    <!-- UTILIDADES Y CONTROLADORES -->
+    <script src="js/utils.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/crud.js"></script>
 
+    <!-- FUNCIÓN SIMPLE PARA FORZAR ACTUALIZACIÓN -->
     <script>
-   
-        window.addEventListener('load', function() {
-            console.log('=== DEBUG INFORMACIÓN ===');
-            console.log('1. App disponible:', typeof app !== 'undefined');
-            console.log('2. CRUD disponible:', typeof crud !== 'undefined');
-            console.log('3. Servicios cargados:', app ? app.servicios.length : 'N/A');
+        // Función única para forzar la actualización
+        function recargarDatosForzado() {
+            console.log('🔥 FORZANDO ACTUALIZACIÓN DE DATOS');
             
-          
-            const nuevoScriptBtn = document.querySelector('.btn-success[onclick*="crud.mostrarFormularioNuevo"]');
-            console.log('4. Botón Nuevo Script encontrado:', nuevoScriptBtn !== null);
+            // 1. Mostrar indicador
+            const debug = document.getElementById('simpleDebug');
+            debug.style.display = 'block';
+            debug.innerHTML = '🔄 Actualizando...';
             
+            // 2. Verificar que servicios.js tenga datos
+            if (typeof servicios === 'undefined') {
+                debug.innerHTML = '❌ ERROR: servicios.js no está cargado';
+                return;
+            }
+            
+            debug.innerHTML += `<br>📦 servicios.js: ${servicios.length} servicios`;
+            
+            // 3. Forzar actualización en app
+            if (typeof app !== 'undefined') {
+                // Reemplazar completamente los datos
+                app.servicios = JSON.parse(JSON.stringify(servicios));
+                debug.innerHTML += `<br>✅ app.servicios actualizado: ${app.servicios.length}`;
+                
+                // Forzar renderizado de tabla
+                if (typeof app.actualizarTodo === 'function') {
+                    app.actualizarTodo();
+                } else if (typeof app.cargarServicios === 'function') {
+                    app.cargarServicios();
+                } else if (typeof app.renderizarTodo === 'function') {
+                    app.renderizarTodo();
+                } else {
+                    // Actualización manual de la tabla
+                    const tbody = document.getElementById('tablaServicios');
+                    if (tbody && servicios.length > 0) {
+                        tbody.innerHTML = '';
+                        servicios.forEach(s => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${s.servicio}</td>
+                                <td>${s.categoria || 'general'}</td>
+                                <td><button onclick="verDetalle('${s.servicio}', 'falla')">Ver</button></td>
+                                <td><button onclick="verDetalle('${s.servicio}', 'normalidad')">Ver</button></td>
+                                <td><button onclick="verDetalle('${s.servicio}', 'intermitencia')">Ver</button></td>
+                                <td><button onclick="editarServicio('${s.servicio}')">✏️</button></td>
+                            `;
+                            tbody.appendChild(row);
+                        });
+                    }
+                }
+                
+                // Actualizar contador
+                document.getElementById('totalServicios').innerText = servicios.length;
+                document.getElementById('contadorTabla').innerText = servicios.length;
+                
+                debug.innerHTML += `<br>✅ Tabla actualizada`;
+                
+                // Mostrar preview del primer servicio para verificar formato
+                if (servicios.length > 0) {
+                    const primerFalla = servicios[0].falla || '';
+                    debug.innerHTML += `<br>📝 Preview: ${primerFalla.substring(0, 50)}...`;
+                    debug.innerHTML += `<br>🔴 ${primerFalla.includes('🔴') ? '✓' : '✗'}`;
+                }
+            }
+            
+            // Ocultar después de 5 segundos
+            setTimeout(() => {
+                debug.style.display = 'none';
+            }, 5000);
+        }
         
-            if (typeof crud === 'undefined') {
-                console.error('ERROR: crud no está definido. Revisa la inicialización.');
-                console.log('Sugerencia: Verifica el orden de los scripts en HTML');
-                console.log('Debe ser: 1. crud.js, 2. app.js');
+        // Función helper para ver detalles
+        function verDetalle(servicio, tipo) {
+            const s = servicios.find(x => x.servicio === servicio);
+            if (s && s[tipo]) {
+                alert(s[tipo]);
+            }
+        }
+        
+        // Verificar al cargar
+        window.addEventListener('load', function() {
+            console.log('=== VERIFICACIÓN INICIAL ===');
+            console.log('servicios.js:', typeof servicios !== 'undefined' ? servicios.length : 'NO CARGADO');
+            console.log('app:', typeof app !== 'undefined' ? 'OK' : 'NO CARGADO');
+            
+            if (typeof servicios !== 'undefined' && servicios.length > 0) {
+                document.getElementById('totalServicios').innerText = servicios.length;
+                document.getElementById('contadorTabla').innerText = servicios.length;
+                
+                // Mostrar preview
+                const debug = document.getElementById('simpleDebug');
+                debug.style.display = 'block';
+                debug.innerHTML = '✅ Datos cargados<br>';
+                debug.innerHTML += `📦 ${servicios.length} servicios<br>`;
+                debug.innerHTML += `📝 Ejemplo: ${servicios[0].falla?.substring(0, 30)}...`;
+                
+                setTimeout(() => {
+                    debug.style.display = 'none';
+                }, 3000);
             }
         });
     </script>
