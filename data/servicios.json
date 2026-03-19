@@ -1,10 +1,10 @@
 [
  {
-    "servicio": "Nequi Push – Compras de Saldo",
-    "categoria": "bancos",
-    "falla": "🔴 IMPORTANTE\n\nPor medio del presente informamos que actualmente se presenta una novedad en la asignación de las compras de saldo realizadas por Nequi Push.\n\nInformaremos por medio de la plataforma tan pronto el servicio se encuentre restablecido.\n\nAgradecemos su comprensión.",
-    "normalidad": "🟢 Importante\n\nPor medio del presente informamos que en el momento el servicio de Nequi Push – Compras de Saldo presenta normalidad.\n\nAgradecemos su comprensión.",
-    "intermitencia": "🟠 IMPORTANTE\n\nPor medio del presente informamos que actualmente el servicio de Nequi Push – Compras de Saldo presenta intermitencia.\n\nInformaremos por medio de la plataforma tan pronto el servicio se encuentre restablecido.\n\nAgradecemos su comprensión."
+    servicio: "Nequi Push – Compras de Saldo",
+    categoria: "bancos",
+    falla: "🔴 IMPORTANTE\n\nPor medio del presente informamos que actualmente se presenta una novedad en la asignación de las compras de saldo realizadas por Nequi Push.\n\nInformaremos por medio de la plataforma tan pronto el servicio se encuentre restablecido.\n\nAgradecemos su comprensión.",
+    normalidad: "🟢 Importante\n\nPor medio del presente informamos que en el momento el servicio de Nequi Push – Compras de Saldo presenta normalidad.\n\nAgradecemos su comprensión.",
+    intermitencia: "🟠 IMPORTANTE\n\nPor medio del presente informamos que actualmente el servicio de Nequi Push – Compras de Saldo presenta intermitencia.\n\nInformaremos por medio de la plataforma tan pronto el servicio se encuentre restablecido.\n\nAgradecemos su comprensión."
   },
   {
     "servicio": "Recargas Internacionales – Venezuela",
