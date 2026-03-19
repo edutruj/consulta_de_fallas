@@ -385,3 +385,4 @@
     "intermitencia": "🟠 IMPORTANTE\n\nQueremos informarte que actualmente nuestra herramienta de Tickets presenta intermitencia temporal. Mientras realizamos la validación y solución correspondiente, si tienes algún caso que necesites escalar, te agradecemos hacerlo a través de nuestro correo soporte@bemovil.net.\n\nInformaremos por medio de la plataforma tan pronto el servicio se encuentre restablecido.\n\nAgradecemos mucho tu comprensión y paciencia."
   }
 ]
+const servicios = datosRespaldo;
