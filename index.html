@@ -37,7 +37,6 @@
             </div>
         </header>
 
- 
         <section id="adminPanel" class="admin-panel hidden">
             <div class="admin-header">
                 <h2><i class="fas fa-edit"></i> Administrar Scripts</h2>
@@ -58,7 +57,6 @@
                     </button>
                 </div>
                 
-  
                 <div id="formScript" class="form-container hidden">
                     <h3 id="formTitulo">Nuevo Script</h3>
                     <form id="scriptForm" onsubmit="guardarScript(event)">
@@ -109,7 +107,6 @@
                     </form>
                 </div>
                 
-        
                 <div id="listaScripts" class="scripts-list">
                     <h3>Scripts Existentes</h3>
                     <div class="search-container">
@@ -120,7 +117,6 @@
                 </div>
             </div>
         </section>
-
 
         <section class="search-section">
             <div class="search-header">
@@ -145,11 +141,14 @@
                     <button class="btn btn-primary btn-search" onclick="buscarServicios()">
                         <i class="fas fa-search"></i> Buscar Servicio
                     </button>
+                    <!-- BOTÓN DE LIMPIAR AGREGADO -->
+                    <button class="btn btn-secondary" onclick="limpiarBusqueda()">
+                        <i class="fas fa-eraser"></i> Limpiar
+                    </button>
                 </div>
             </div>
         </section>
 
- 
         <section id="resultadosSection" class="results-section hidden">
             <div class="results-header">
                 <h2><i class="fas fa-poll"></i> Resultados de Búsqueda</h2>
@@ -169,7 +168,6 @@
             <div id="resultadosContainer" class="results-container"></div>
         </section>
 
- 
         <div id="noEncontrado" class="not-found hidden">
             <i class="fas fa-search-minus"></i>
             <h3>No se encontraron servicios</h3>
@@ -178,7 +176,6 @@
                 <i class="fas fa-eye"></i> Ver todos los servicios
             </button>
         </div>
-
 
         <section class="services-section">
             <div class="section-header">
@@ -219,7 +216,6 @@
             </div>
         </section>
 
-
         <footer class="footer">
             <p>
                 <i class="fas fa-sync-alt"></i> Sistema de Reportes de Servicios | 
@@ -227,7 +223,6 @@
             </p>
             <p class="footer-version">v2.0 - Generación Be</p>
         </footer>
-
 
         <div class="floating-buttons">
             <button id="btnTop" class="floating-btn btn-scroll-top hidden" onclick="scrollToTop()">
@@ -238,7 +233,6 @@
             </button>
         </div>
 
- 
         <div id="detallesModal" class="modal hidden">
             <div class="modal-content">
                 <div class="modal-header">
@@ -283,59 +277,45 @@
             debug.style.display = 'block';
             debug.innerHTML = '🔄 Actualizando...';
             
-            // 2. Verificar que servicios.js tenga datos
-            if (typeof servicios === 'undefined') {
-                debug.innerHTML = '❌ ERROR: servicios.js no está cargado';
+            // 2. Verificar que servicios.js tenga datos (CORREGIDO: ahora verifica datosRespaldo)
+            if (typeof datosRespaldo === 'undefined') {
+                debug.innerHTML = '❌ ERROR: datosRespaldo no está definido';
+                console.error('datosRespaldo no está definido');
                 return;
             }
             
-            debug.innerHTML += `<br>📦 servicios.js: ${servicios.length} servicios`;
+            debug.innerHTML += `<br>📦 datosRespaldo: ${datosRespaldo.length} servicios`;
             
-            // 3. Forzar actualización en app
+            // 3. Crear variable global servicios para compatibilidad
+            window.servicios = JSON.parse(JSON.stringify(datosRespaldo));
+            debug.innerHTML += `<br>✅ window.servicios creado: ${window.servicios.length}`;
+            
+            // 4. Forzar actualización en app
             if (typeof app !== 'undefined') {
                 // Reemplazar completamente los datos
-                app.servicios = JSON.parse(JSON.stringify(servicios));
+                app.servicios = JSON.parse(JSON.stringify(datosRespaldo));
                 debug.innerHTML += `<br>✅ app.servicios actualizado: ${app.servicios.length}`;
                 
-                // Forzar renderizado de tabla
-                if (typeof app.actualizarTodo === 'function') {
-                    app.actualizarTodo();
-                } else if (typeof app.cargarServicios === 'function') {
-                    app.cargarServicios();
-                } else if (typeof app.renderizarTodo === 'function') {
-                    app.renderizarTodo();
-                } else {
-                    // Actualización manual de la tabla
-                    const tbody = document.getElementById('tablaServicios');
-                    if (tbody && servicios.length > 0) {
-                        tbody.innerHTML = '';
-                        servicios.forEach(s => {
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
-                                <td>${s.servicio}</td>
-                                <td>${s.categoria || 'general'}</td>
-                                <td><button onclick="verDetalle('${s.servicio}', 'falla')">Ver</button></td>
-                                <td><button onclick="verDetalle('${s.servicio}', 'normalidad')">Ver</button></td>
-                                <td><button onclick="verDetalle('${s.servicio}', 'intermitencia')">Ver</button></td>
-                                <td><button onclick="editarServicio('${s.servicio}')">✏️</button></td>
-                            `;
-                            tbody.appendChild(row);
-                        });
-                    }
-                }
+                // Guardar en localStorage
+                app.guardarServicios();
                 
-                // Actualizar contador
-                document.getElementById('totalServicios').innerText = servicios.length;
-                document.getElementById('contadorTabla').innerText = servicios.length;
+                // Actualizar tabla
+                app.cargarTabla();
+                
+                // Actualizar contadores
+                document.getElementById('totalServicios').innerText = datosRespaldo.length;
+                document.getElementById('contadorTabla').innerText = datosRespaldo.length;
                 
                 debug.innerHTML += `<br>✅ Tabla actualizada`;
                 
                 // Mostrar preview del primer servicio para verificar formato
-                if (servicios.length > 0) {
-                    const primerFalla = servicios[0].falla || '';
+                if (datosRespaldo.length > 0) {
+                    const primerFalla = datosRespaldo[0].falla || '';
                     debug.innerHTML += `<br>📝 Preview: ${primerFalla.substring(0, 50)}...`;
                     debug.innerHTML += `<br>🔴 ${primerFalla.includes('🔴') ? '✓' : '✗'}`;
                 }
+            } else {
+                debug.innerHTML += `<br>❌ app no está definida`;
             }
             
             // Ocultar después de 5 segundos
@@ -346,32 +326,39 @@
         
         // Función helper para ver detalles
         function verDetalle(servicio, tipo) {
-            const s = servicios.find(x => x.servicio === servicio);
+            const s = (typeof servicios !== 'undefined' ? servicios : datosRespaldo).find(x => x.servicio === servicio);
             if (s && s[tipo]) {
                 alert(s[tipo]);
             }
         }
         
-        // Verificar al cargar
+        // Verificar al cargar (CORREGIDO)
         window.addEventListener('load', function() {
             console.log('=== VERIFICACIÓN INICIAL ===');
-            console.log('servicios.js:', typeof servicios !== 'undefined' ? servicios.length : 'NO CARGADO');
+            console.log('datosRespaldo:', typeof datosRespaldo !== 'undefined' ? datosRespaldo.length : 'NO CARGADO');
             console.log('app:', typeof app !== 'undefined' ? 'OK' : 'NO CARGADO');
             
-            if (typeof servicios !== 'undefined' && servicios.length > 0) {
-                document.getElementById('totalServicios').innerText = servicios.length;
-                document.getElementById('contadorTabla').innerText = servicios.length;
+            if (typeof datosRespaldo !== 'undefined' && datosRespaldo.length > 0) {
+                // Crear servicios global para compatibilidad
+                window.servicios = JSON.parse(JSON.stringify(datosRespaldo));
+                
+                document.getElementById('totalServicios').innerText = datosRespaldo.length;
+                document.getElementById('contadorTabla').innerText = datosRespaldo.length;
                 
                 // Mostrar preview
                 const debug = document.getElementById('simpleDebug');
                 debug.style.display = 'block';
-                debug.innerHTML = '✅ Datos cargados<br>';
-                debug.innerHTML += `📦 ${servicios.length} servicios<br>`;
-                debug.innerHTML += `📝 Ejemplo: ${servicios[0].falla?.substring(0, 30)}...`;
+                debug.innerHTML = '✅ Datos cargados correctamente<br>';
+                debug.innerHTML += `📦 ${datosRespaldo.length} servicios<br>`;
+                debug.innerHTML += `📝 Ejemplo: ${datosRespaldo[0].falla?.substring(0, 30)}...`;
                 
                 setTimeout(() => {
                     debug.style.display = 'none';
                 }, 3000);
+            } else {
+                const debug = document.getElementById('simpleDebug');
+                debug.style.display = 'block';
+                debug.innerHTML = '❌ ERROR: datosRespaldo no está cargado';
             }
         });
     </script>
